@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GetUser } from '../apicalls/users';
+import { HideLoading, ShowLoading } from '../redux/loadersSlice';
 import { SetCurrentUser } from '../redux/usersSlice';
 
 function ProtectedRoute({children}) {
@@ -12,13 +13,16 @@ function ProtectedRoute({children}) {
     const getUser = async ()=> {
         
         try {
+            dispatch(ShowLoading());
             const response = await GetUser();
             if(response.success){
                 dispatch(SetCurrentUser(response.data));
             } else {
                 toast.error(response.message)
             }
+            dispatch(HideLoading());
         } catch (error) {
+            dispatch(HideLoading());
             toast.error(error.message)
         }
     };

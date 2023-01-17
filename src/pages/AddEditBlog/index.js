@@ -3,9 +3,16 @@ import { Editor } from 'react-draft-wysiwyg';
 import './../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorState, convertToRaw } from 'draft-js';
 import Button from '../../components/Button';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { AddNewBlog } from '../../apicalls/blogs';
+import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function AddEditBlog() {
+  const { currentUser } = useSelector(state => state.usersReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [blog, setBlog] = React.useState({
     title: '',
     content: EditorState.createEmpty(),
@@ -15,11 +22,28 @@ function AddEditBlog() {
     canLike: false
   });
 
-  const onSave = () => {
-    blog.content = blog.content.getCurrentContent()
-    blog.content = JSON.stringify(convertToRaw(blog.content))
-    console.log(blog)
-  }
+  const onSave = async () => {
+    
+    try {
+      dispatch(ShowLoading());
+      const response = await AddNewBlog({
+        ...blog,
+        content: JSON.stringify(blog.content.getCurrentContent()),
+        user: currentUser._id
+      });
+      if(response.success) {
+        toast.success(response.message);
+        navigate('/');
+      } else {
+        toast.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div>
       <div className='flex justify-between'>
