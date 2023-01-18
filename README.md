@@ -1,6 +1,14 @@
-<h1 align="center">'
-    # radBlog - ORIGIN2020.3
+<h1 align="center">
+     <span class=""span">radBlog</span> - ORIGIN2020.3
 </h1>
+
+<style>
+   .span { background-color: black;
+            color: white;
+    }
+    yellow { color: yellow }
+
+</style>
 
  
 <!--- P R O F I L E   B A N N E R --->
