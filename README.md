@@ -4,8 +4,11 @@
   <img src="public\radblok_png_logo.png">
 </h1>
 
-<div align="center>
-<p>
+<h1 align="center">
+     <span style="color:green;font-weight:700;font-size:20px" >radBlog</span> - ORIGIN2020.3
+</h1>
+
+<p align="center>
   <a href="https://github.com/radlee/awesome-readme-template/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/radlee/awesome-readme-template" alt="contributors" />
   </a>
@@ -25,12 +28,6 @@
     <img src="https://img.shields.io/github/license/radlee/awesome-readme-template.svg" alt="license" />
   </a>
 </p>
-</div>
-
-<h1 align="center">
-     <span style="color:green;font-weight:700;font-size:20px" >radBlog</span> - ORIGIN2020.3
-</h1>
-
 
 # Getting Started with Create React App
 
