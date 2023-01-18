@@ -1,14 +1,8 @@
 <h1 align="center">
-     <span class=""span">radBlog</span> - ORIGIN2020.3
+     <span style="color:green;font-weight:700;font-size:20px" >radBlog</span> - ORIGIN2020.3
 </h1>
 
-<style>
-   .span { background-color: black;
-            color: white;
-    }
-    yellow { color: yellow }
 
-</style>
 
  
 <!--- P R O F I L E   B A N N E R --->
