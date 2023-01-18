@@ -1,15 +1,34 @@
-<h1 align="center">
-     <span style="color:green;font-weight:700;font-size:20px" >radBlog</span> - ORIGIN2020.3
-</h1>
-
-
-
- 
 <!--- P R O F I L E   B A N N E R --->
 
 <h1 align="center">
   <img src="public\radblok_png_logo.png">
 </h1>
+
+<p>
+  <a href="https://github.com/radlee/awesome-readme-template/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/radlee/awesome-readme-template" alt="contributors" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/radlee/awesome-readme-template" alt="last update" />
+  </a>
+  <a href="https://github.com/radlee/awesome-readme-template/network/members">
+    <img src="https://img.shields.io/github/forks/radlee/awesome-readme-template" alt="forks" />
+  </a>
+  <a href="https://github.com/radlee/awesome-readme-template/stargazers">
+    <img src="https://img.shields.io/github/stars/radlee/awesome-readme-template" alt="stars" />
+  </a>
+  <a href="https://github.com/radlee/awesome-readme-template/issues/">
+    <img src="https://img.shields.io/github/issues/radlee/awesome-readme-template" alt="open issues" />
+  </a>
+  <a href="https://github.com/radlee/awesome-readme-template/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/radlee/awesome-readme-template.svg" alt="license" />
+  </a>
+</p>
+
+<h1 align="center">
+     <span style="color:green;font-weight:700;font-size:20px" >radBlog</span> - ORIGIN2020.3
+</h1>
+
 
 # Getting Started with Create React App
 
