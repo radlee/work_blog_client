@@ -36,7 +36,7 @@ function Blog({blog}) {
             <span>{blog.commentsCount}</span>
           </div>
           <div className='flex gap-1 items-center'>
-          <i class="ri-share-forward-line"></i>
+          <i className="ri-share-forward-line"></i>
             <span>{blog.sharesCount}</span>
           </div>
         </div>
