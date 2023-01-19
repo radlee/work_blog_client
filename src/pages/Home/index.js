@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { GetAllBlogs } from '../../apicalls/blogs';
 import Button from '../../components/Button';
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
+import Blog from './Blog';
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -17,6 +18,7 @@ function Home() {
       dispatch(ShowLoading());
       const response = await GetAllBlogs();
       if(response.success) {
+        console.log(response.data)
         setBlogs(response.data);
       } else {
         toast.error(response.message);
@@ -27,9 +29,11 @@ function Home() {
     }
   }
 
-  useEffect(()=> {
-    getData()
+  useEffect(() => {
+    getData();
   }, []);
+
+  
   return (
     <div>
       <div className='flex justify-between'>
@@ -39,6 +43,12 @@ function Home() {
         <Button title='Add Blog' variant='primary-outlined'
           onClick={() => navigate('/add-blog')}
         />
+      </div>
+
+      <div className="grid lg:grid-cols-2 xl:grid-cols-2 gap-5 mt-5 sm:grid-cols-1 xs:grid-cols-1">
+        {blogs.map((blog) => (
+          <Blog key={blog._id} blog={blog} />
+        ))}
       </div>
     </div>
   );

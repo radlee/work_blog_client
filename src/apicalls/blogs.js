@@ -13,7 +13,7 @@ export const AddNewBlog = async (payload) => {
 //Get all blogs
 export const GetAllBlogs = async () => {
     try {
-        const response = await axiosInstance.post('/api/blogs/get-all-blogs');
+        const response = await axiosInstance.get('/api/blogs/get-all-blogs');
         return response.data;
     } catch (error) {
         throw error || error.response.data;
@@ -23,7 +23,7 @@ export const GetAllBlogs = async () => {
 //Get blog by id
 export const GetBlogById = async (id) => {
     try {
-        const response = await axiosInstance.post(`/api/blogs/get-blog-by-id/${id}`);
+        const response = await axiosInstance.get(`/api/blogs/get-blog-by-id/${id}`);
         return response.data;
     } catch (error) {
         throw error || error.response.data;

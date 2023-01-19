@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Loader from './components/Loader';
 import AddEditBlog from "./pages/AddEditBlog";
+import BlogDescription from "./pages/BlogDesc";
 
 function App() {
   const { loading } = useSelector(state => state.loadersReducer);
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <ProtectedRoute><Home /></ProtectedRoute> } />
           <Route path='/add-blog' element={ <ProtectedRoute><AddEditBlog /></ProtectedRoute> } />
+          <Route path='/blog-desc/:id' element={ <ProtectedRoute><BlogDescription /></ProtectedRoute> } />
           <Route path='/edit-blog/:id' element={ <ProtectedRoute><AddEditBlog /></ProtectedRoute> } />
           <Route path='/login' element={ <Login />} />
           <Route path='/register' element={ <Register />} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Editor } from 'react-draft-wysiwyg';
 import './../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
+import { convertToRaw, EditorState } from 'draft-js';
 import Button from '../../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddNewBlog } from '../../apicalls/blogs';
@@ -28,7 +28,7 @@ function AddEditBlog() {
       dispatch(ShowLoading());
       const response = await AddNewBlog({
         ...blog,
-        content: JSON.stringify(blog.content.getCurrentContent()),
+        content: JSON.stringify(convertToRaw(blog.content.getCurrentContent())),
         user: currentUser._id
       });
       if(response.success) {
