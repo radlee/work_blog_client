@@ -39,7 +39,9 @@ function ProtectedRoute({children}) {
         <div className='p-5'>
             <div className='bg-primary w-full p-5 justify-between flex rounded items-center'>
                 
-                <h1 className='text-white text-2xl font-bold uppercase cursor-pointer'>
+                <h1 className='text-white text-2xl font-bold uppercase cursor-pointer'
+                    onClick={() => navigate('/')}
+                >
                     The Flash Blog
                 </h1>
 
@@ -53,7 +55,7 @@ function ProtectedRoute({children}) {
 
                 </div>
             </div>
-            <div className='mt-5'>{children}</div>
+            <div className='mt-5 overflow-scroll h-[85vh]'>{children}</div>
         </div>
     )
   )

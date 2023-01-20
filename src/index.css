@@ -3,7 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 * {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif !important;
+  overflow: hidden;
 }
 input, textarea {
   border: 1px solid #ccc;

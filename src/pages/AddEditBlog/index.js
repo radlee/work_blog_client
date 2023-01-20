@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Editor } from 'react-draft-wysiwyg';
 import './../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { convertToRaw, EditorState } from 'draft-js';
+import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import Button from '../../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddNewBlog } from '../../apicalls/blogs';
+import { AddNewBlog, GetBlogById, UpdateBlog } from '../../apicalls/blogs';
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function AddEditBlog() {
+  const params = useParams();
   const { currentUser } = useSelector(state => state.usersReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -26,11 +27,21 @@ function AddEditBlog() {
     
     try {
       dispatch(ShowLoading());
-      const response = await AddNewBlog({
-        ...blog,
-        content: JSON.stringify(convertToRaw(blog.content.getCurrentContent())),
-        user: currentUser._id
-      });
+      let response = null;
+      if (params.id) {
+        response = await UpdateBlog({
+          ...blog,
+          content: JSON.stringify(convertToRaw(blog.content.getCurrentContent())),
+          user: currentUser._id,
+          _id: params.id
+        });
+      } else {
+        response = await AddNewBlog({
+          ...blog,
+          content: JSON.stringify(convertToRaw(blog.content.getCurrentContent())),
+          user: currentUser._id
+        });
+      }
       if(response.success) {
         toast.success(response.message);
         navigate('/');
@@ -44,10 +55,42 @@ function AddEditBlog() {
     }
   };
 
+  const getData = async () => {
+    try {
+      dispatch(ShowLoading());
+      const response = await GetBlogById(params.id);
+      if(response.success) {
+        setBlog(
+          {
+            ...response.data,
+            content: EditorState.createWithContent(
+            convertFromRaw(JSON.parse(response.data.content))
+          )
+          }
+        );
+      } else {
+        toast.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+    }
+  }
+
+  useEffect(() => {
+    if (params.id) {
+      getData();
+    }
+
+  }, []);
+
+
   return (
     <div>
       <div className='flex justify-between'>
-        <h1 className='text-primary uppercase text-2xl font-bold'>Add Blog</h1>
+        <h1 className='text-primary uppercase text-2xl font-bold'>
+          {params.id ? 'Edit Blog' : 'Ádd Blog'}
+        </h1>
       </div>
 
       <div className='flex flex-col gap-5 mt-5'>

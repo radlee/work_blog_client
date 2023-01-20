@@ -29,3 +29,28 @@ export const GetBlogById = async (id) => {
         throw error || error.response.data;
     }
 }
+
+// Update Blog
+export const UpdateBlog = async (payload) => {
+    try {
+        const response = await axiosInstance.put(
+            `/api/blogs/update-blog/${payload._id}`,
+            payload
+        );
+        return response.data;
+    } catch (error) {
+        throw error || error.response.data;
+    }
+}
+
+//Delete blog
+export const DeleteBlog = async (id) => {
+    try {
+        const response = await axiosInstance.delete(
+            `/api/blogs/delete-blog/${id}`
+        );
+        return response.data;
+    } catch (error) {
+        throw error || error.response.data;
+    }
+}
