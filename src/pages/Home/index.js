@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { GetAllBlogs } from '../../apicalls/blogs';
-import Button from '../../components/Button';
-import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
-import Blog from './Blog';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import { toast } from "react-hot-toast";
+import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
+import { GetAllBlogs } from "../../apicalls/blogs";
+import Blog from "./Blog";
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -17,8 +17,7 @@ function Home() {
     try {
       dispatch(ShowLoading());
       const response = await GetAllBlogs();
-      if(response.success) {
-        console.log(response.data)
+      if (response.success) {
         setBlogs(response.data);
       } else {
         toast.error(response.message);
@@ -26,22 +25,25 @@ function Home() {
       dispatch(HideLoading());
     } catch (error) {
       dispatch(HideLoading());
+      toast.error(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
   }, []);
 
-  
   return (
     <div>
-      <div className='flex justify-between'>
-        <h1 className='text-primary uppercase text-2xl font-bold'>
-            Welcome, { currentUser.name}!
+      <div className="flex justify-between">
+        <h1 className="text-primary uppercase text-2xl font-bold">
+          Welcome {currentUser.name} !
         </h1>
-        <Button title='Add Blog' variant='primary-outlined'
-          onClick={() => navigate('/add-blog')}
+
+        <Button
+          title="Add Blog"
+          variant="primary-outlined"
+          onClick={() => navigate("/add-blog")}
         />
       </div>
 
@@ -54,4 +56,4 @@ function Home() {
   );
 }
 
-export default Home 
+export default Home;
